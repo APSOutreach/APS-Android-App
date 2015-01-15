@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="bt.aps.spectrasnapp"
+    android:versionCode="13"
+    android:versionName="11.2" >
+    <compatible-screen>
+        <screen android:screenSize="small" android:screenDensity="ldpi" />
+        <screen android:screenSize="small" android:screenDensity="mdpi" />
+        <screen android:screenSize="small" android:screenDensity="hdpi" />
+        <screen android:screenSize="small" android:screenDensity="xhdpi" />
+        
+        <screen android:screenSize="normal" android:screenDensity="ldpi" />
+        <screen android:screenSize="normal" android:screenDensity="mdpi" />
+        <screen android:screenSize="normal" android:screenDensity="hdpi" />
+        <screen android:screenSize="normal" android:screenDensity="xhdpi" />
+    </compatible-screen>
+    
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+    <uses-sdk
+        android:minSdkVersion="16"
+        android:targetSdkVersion="19" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/icon57"
+        android:label="@string/app_name"
+        android:theme="@style/Theme.AppCompat.Light" >
+        
+        <meta-data 
+            android:name="com.aviary.android.feather.v1.API_KEY"
+            android:value="6f485335a89431b3"/>
+        
+        <activity
+            android:name="bt.aps.spectrasnapp.MainActivity"
+            android:label="@string/app_name"
+            android:configChanges="orientation|keyboardHidden|screenSize" >
+        </activity>
+        <activity 
+            android:name="bt.aps.spectrasnapp.SplashScreen"
+            android:label="@string/app_name">
+            
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity 
+            android:name="bt.aps.spectrasnapp.Compare"
+            android:configChanges="orientation|keyboardHidden|screenSize">
+        </activity>
+        <activity 
+            android:name="bt.aps.spectrasnapp.TempActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize">
+        </activity>
+        <activity 
+            android:name="bt.aps.spectrasnapp.InflatedCompareActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize">
+            
+        </activity>
+        <activity
+            android:name="bt.aps.spectrasnapp.Learn"
+            android:configChanges="orientation|keyboardHidden|screenSize">  
+        </activity>
+        <activity
+            android:name="bt.aps.spectrasnapp.Build"
+            android:configChanges="orientation|keyboardHidden|screenSize">  
+        </activity>
+        <activity
+            android:name="bt.aps.spectrasnapp.Snapp"
+            android:configChanges="orientation|keyboardHidden|screenSize">  
+        </activity>
+        <activity
+            android:name="bt.aps.spectrasnapp.Share"
+            android:configChanges="orientation|keyboardHidden|screenSize">  
+        </activity>
+        <activity
+            android:name="bt.aps.spectrasnapp.PhysicsCentral">  
+        </activity>
+        <activity
+            android:name="bt.aps.spectrasnapp.Analyze"
+            android:configChanges="orientation|keyboardHidden|screenSize">  
+        </activity>
+        <activity
+            android:name="bt.aps.spectrasnapp.Calibrate"
+            android:configChanges="orientation|keyboardHidden|screenSize">  
+        </activity>
+        <activity
+            android:name="bt.aps.spectrasnapp.Help"
+            android:configChanges="orientation|keyboardHidden|screenSize">  
+        </activity>
+        <activity
+            android:name="bt.aps.spectrasnapp.PictureReturnActivity">  
+        </activity>
+        
+        <activity 
+            android:name="com.aviary.android.feather.FeatherActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="unspecified"
+            android:hardwareAccelerated="true"
+            android:largeHeap="true"
+            android:process=":aviarysdk"
+            android:theme="@style/AviaryTheme"/>
+        
+        <activity 
+            android:name="com.aviary.android.feather.FeatherInflatedCompareActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"/>
+        
+        <activity
+   	    	 android:name="com.aviary.android.feather.AlertActivity"
+   		     android:launchMode="standard"
+ 		     android:noHistory="true"
+  		     android:theme="@style/AviaryTheme.Dialog">
+    	    <intent-filter>
+   		         <action android:name="aviary.intent.action.ALERT"/>
+    	         <category android:name="android.intent.category.DEFAULT" />
+     	    </intent-filter>
+   		</activity>
+
+    <!-- CDS Content Service -->
+    <service
+        android:process=":aviarycds"
+        android:name="com.aviary.android.feather.cds.AviaryCdsService"
+        android:exported="false">
+        <intent-filter>
+            <action android:name="aviary.intent.action.CDS_DOWNLOAD_START"/>
+            <action android:name="aviary.intent.action.CDS_RESTORE_USER_ITEMS"/>
+        </intent-filter>
+    </service> 
+
+    <!-- 
+        Cds Content Provider, 
+        NOTE that the "authorities" value MUST be formatted in this way:
+        android:authorities="{your.packagename}.AviaryCdsProvider"
+     -->
+    <provider
+        android:name="com.aviary.android.feather.cds.AviaryCdsProvider"
+        android:authorities="bt.aps.spectrasnapp.AviaryCdsProvider"
+        android:process=":aviarycds"
+        android:exported="false"
+        android:syncable="true" />  
+        
+    <receiver 
+        android:name="com.aviary.android.feather.cds.AviaryCdsReceiver"
+        android:process=":aviarycds" >
+        <intent-filter>
+            <action android:name="android.intent.action.DOWNLOAD_COMPLETE" />
+        </intent-filter>
+    </receiver>
+        
+        
+    </application>
+
+</manifest>
